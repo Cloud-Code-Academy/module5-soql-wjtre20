@@ -31,7 +31,7 @@ public with sharing class SOQL {
     public static List<Lead> getAllLeads() {
         return [SELECT Id, LastName, Company, Phone, Email
                 FROM Lead
-                ];
+                LIMIT 50000];
     }
 
     /**
@@ -278,7 +278,8 @@ public with sharing class SOQL {
         return [SELECT Id, Name, 
                     (SELECT Id, Name
                     FROM Opportunities)
-                FROM Account]; // Replace null with the variable you used to store the result
+                FROM Account
+                WHERE Id = :accountId]; // Replace null with the variable you used to store the result
     }
 
     /**
